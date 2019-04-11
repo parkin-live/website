@@ -28,7 +28,7 @@ function setSpaces(spaces){
 function reloadSpaces(){
     setSpaces('Loading..');
     $.ajax({
-      url: "https://se4bx01od8.execute-api.us-west-2.amazonaws.com/default/parkin_live_api",
+      url: "https://49tghlc41l.execute-api.us-west-2.amazonaws.com/prod/parkin_live_api",
       cache: false,
       success: function(html){
         console.log(html);
