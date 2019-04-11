@@ -32,17 +32,7 @@ function setSpaces(spaces){
 }
 
 function reloadSpaces(){
-    setSpaces('Loading..');
-
-    $.ajax({
-      url: "https://se4bx01od8.execute-api.us-west-2.amazonaws.com/default/parkin_live_api",
-      cache: false,
-      success: function(html){
-        console.log(html);
-        setSpaces(html['available_spaces']);
-      }
-    });
-
+    setSpaces("Sorry, we didn't win. But you can stick your thumb into a non existing authentication app");
 }
 
 $(document).ready(function () {
