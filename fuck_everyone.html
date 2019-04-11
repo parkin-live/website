@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ParkIn</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
+  
+  
+<script>
+function setSpaces(spaces){
+    var color = "success";
+    if (spaces > 10){
+        color = "success";
+    }else if (spaces > 0) {
+        color = "warning";
+    }else{
+        color = "danger";
+    }
+    $('#spacesHolder').html("<span class='text-" + color + "'>" + spaces + "</span>");
+}
+function reloadSpaces(){
+    setSpaces('Loading..');
+    $.ajax({
+      url: "https://se4bx01od8.execute-api.us-west-2.amazonaws.com/default/parkin_live_api",
+      cache: false,
+      success: function(html){
+        console.log(html);
+        setSpaces(html['available_spaces']);
+      }
+    });
+}
+$(document).ready(function () {
+    reloadSpaces();
+});
+</script>
+
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>ParkIn</h1>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="text-center">Available spaces:</h3>
+      <h1 class="text-center" id="spacesHolder"></h1>
+        <br>
+      <div class="text-center"><img style="width: 50px;" src="reload.png" onClick="reloadSpaces()"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
